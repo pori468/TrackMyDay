@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TrackMyDay.Models.JobModel>
+
+@{
+    ViewBag.Title = "Job Application";
+}
+
+<h2>Job Application</h2>
+
+<p>
+    @Html.ActionLink("Add New application", "Create")
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company)
+        </th>
+        
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Weblink)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+           
+            @Html.ActionLink(item.Position, "Details", new { id = item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company)
+        </td>
+        
+        <td>
+            
+            <a target="_blank" href="@item.Weblink"> Check Link</a>
+        </td>
+        
+        <td>
+            @Html.ActionLink("Modify", "Edit", new { id=item.Id }) 
+            
+           
+        </td>
+    </tr>
+}
+
+</table>

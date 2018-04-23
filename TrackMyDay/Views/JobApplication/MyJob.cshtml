@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "MyJob";
+}
+
+<h2>Job Application</h2>
+<input type="button" id="Switch" value="Index" />
+<div id="Index">
+    
+
+</div>
+
+<div id="Create">
+
+
+</div>
+
+<script>
+    $('#Switch').click(function () {
+        if ($(this).val() == "My Application") {
+            $(this).val("Add New application");
+           
+        }
+        else {
+            $(this).val("My Application");
+            
+        }
+    });
+
+</script>
+
