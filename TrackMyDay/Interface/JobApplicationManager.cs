@@ -25,5 +25,20 @@ namespace TrackMyDay.Interface
             }
         }
 
+        public JobModel JobDetail(int id)
+        {
+            JobModel detail = new JobModel();
+            try
+            {
+                detail = _data.jobs.FirstOrDefault(x=>x.Id==id);
+                return detail;
+            }
+
+            catch
+            {
+                return detail;
+            }
+        }
+
     }
 }

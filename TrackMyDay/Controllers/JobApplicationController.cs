@@ -31,7 +31,7 @@ namespace TrackMyDay.Controllers
         public ActionResult Index()
         {
 
-            return View(_job.AllJobLIst());
+            return PartialView ("_PartialIndexView",_job.AllJobLIst());
         }
 
         // GET: JobApplication
@@ -42,16 +42,16 @@ namespace TrackMyDay.Controllers
         }
 
         // GET: JobApplication
-        public ActionResult Detail()
+        public ActionResult Detail(int ? id)
         {
 
-            return View();
+            return PartialView ("_PartialDetailview",_job.JobDetail(id.Value));
         }
 
         // GET: JobApplication
         public ActionResult Create()
         {
-            return View();
+            return PartialView("_PartialCreateView");
         }
         [HttpPost]
         public ActionResult Create(JobModel model)

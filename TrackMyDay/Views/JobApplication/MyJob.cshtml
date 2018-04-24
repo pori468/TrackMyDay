@@ -3,27 +3,32 @@
     ViewBag.Title = "MyJob";
 }
 
-<h2>Job Application</h2>
-<input type="button" id="Switch" value="Index" />
-<div id="Index">
-    
-
-</div>
-
-<div id="Create">
+<h2>Job Application</h2><br />
+<input type="button" id="Switch" value="Add New application" />
+<br /><br />
+<div id="DataContainer">
 
 
 </div>
+
+
 
 <script>
+
+    $(document).ready(function () {
+
+        $("#DataContainer").load("/JobApplication/Index");
+    });
+
     $('#Switch').click(function () {
         if ($(this).val() == "My Application") {
+            $("#DataContainer").load("/JobApplication/Index");
             $(this).val("Add New application");
-           
+
         }
         else {
             $(this).val("My Application");
-            
+            $("#DataContainer").load("/JobApplication/Create");
         }
     });
 

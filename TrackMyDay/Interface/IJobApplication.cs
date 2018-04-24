@@ -10,5 +10,6 @@ namespace TrackMyDay.Interface
     interface IJobApplication
     {
         IEnumerable<JobModel> AllJobLIst();
+        JobModel JobDetail( int id);
     }
 }

@@ -1,0 +1,96 @@
+﻿
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+@model IEnumerable<TrackMyDay.Models.JobModel>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Weblink)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+
+                @*@Html.ActionLink(item.Position, "Details", new { id = item.Id })*@
+                <a href="#" onClick="ApplicationDetails(@item.Id)" ;>@item.Position</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+
+            <td>
+
+                <a target="_blank" href="@item.Weblink"> Check Link</a>
+            </td>
+
+            <td>
+                @Html.ActionLink("Modify", "Edit", new { id = item.Id })
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+<script>
+    function ApplicationDetails(id) {
+
+        var id = id;
+        var url = "/JobApplication/Detail";
+
+        $.ajax({
+
+            url: url,
+            data: { id: id },
+
+            success: function (data) {
+                $('#Detailscontainer').html(data);
+                $('#JobDetails').modal();
+            }
+
+        });
+
+    }
+</script>
+
+
+<div class="modal fade" id="JobDetails">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+            <div class="modal-body">
+                <div id="Detailscontainer">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
