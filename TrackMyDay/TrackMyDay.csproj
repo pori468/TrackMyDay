@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201804231016307_df.Designer.cs">
       <DependentUpon>201804231016307_df.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804241827405_job3.cs" />
+    <Compile Include="Migrations\201804241827405_job3.Designer.cs">
+      <DependentUpon>201804241827405_job3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CalanderModel.cs" />
@@ -290,6 +294,8 @@
     <Content Include="Views\JobApplication\_PartialIndexView.cshtml" />
     <Content Include="Views\JobApplication\_PartialCreateView.cshtml" />
     <Content Include="Views\JobApplication\_PartialDetailview.cshtml" />
+    <Content Include="Views\JobApplication\Edit.cshtml" />
+    <Content Include="Views\JobApplication\_PartialEditView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -320,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804231016307_df.resx">
       <DependentUpon>201804231016307_df.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804241827405_job3.resx">
+      <DependentUpon>201804241827405_job3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

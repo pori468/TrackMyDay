@@ -1,18 +1,28 @@
 ﻿@model TrackMyDay.Models.JobModel
 
-<meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@{
+    ViewBag.Title = "Edit";
+}
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<h2>Edit</h2>
 
-<form id="jobinfo" action=" https://localhost:44396/JobApplication/Create" method="post">
-
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
     <div class="form-horizontal">
-        <h4>Job Information</h4>
+        <h4>JobModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -25,7 +35,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
                 @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
             </div>
@@ -34,18 +43,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextArea("Address", null, new { @class = "form-control" })
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div>
 
-
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Type, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                Full Time:  @Html.RadioButtonFor(model => model.Type, "Full Time")
-                Internship: @Html.RadioButtonFor(model => model.Type, "Internship")
+                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -57,51 +64,53 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Announcement, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
-                <label class="radio-inline"><input type="radio" name="Announcement">Announced</label>
-                <label class="radio-inline"><input type="radio" name="Announcement">Unsolited</label>
-
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Announcement, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                Announced:  @Html.RadioButtonFor(model => model.Announcement, "Announced")
-                Unsolited: @Html.RadioButtonFor(model => model.Announcement, "Unsolited")
+                @Html.EditorFor(model => model.Announcement, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Announcement, "", new { @class = "text-danger" })
             </div>
         </div>
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.ContacInfo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextArea("ContacInfo", null, new { @class = "form-control" })
+                @Html.EditorFor(model => model.ContacInfo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ContacInfo, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApplyThrough, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ApplyThrough, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplyThrough, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ApplyThrough, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                Mail:  @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")
-                Web: @Html.RadioButtonFor(model => model.ApplyThrough, "Web")
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-
             <div class="col-md-10">
-                <input type="text" id="ApplicationDate" class="form-control" name="Date">
-
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApplyDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ApplyDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplyDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Refferance, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -113,49 +122,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Submit" class="btn btn-default" id="CreateJob" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
-   
+}
 
-    </form>
-
-
-    <script>
-
-        $("#ApplicationDate").click(function () {
-            $("#ApplicationDate").datepicker({ dateFormat: 'dd-mm-yy' });
-
-        });
-
-        $("#CreateJob").click(function () {
-
-
-            var frm = $('#jobinfo');
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                   
-                    if (data == "True") {
-                        $('#jobinfo').trigger("reset");
-                        alert(" Job info is Submitted !!!");
-                    }
-                    else {
-                        alert("Failed !!!");
-                    }
-                    
-                },
-                error: function (data) {
-                    alert("Failed !!!");
-                },
-            });
-
-        });
-
-    </script>
-
-
-
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

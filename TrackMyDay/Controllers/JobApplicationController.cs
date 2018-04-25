@@ -35,10 +35,19 @@ namespace TrackMyDay.Controllers
         }
 
         // GET: JobApplication
-        public ActionResult Edit()
+
+        public ActionResult Edit(int id)
         {
 
-            return View();
+            return PartialView("_PartialEditView", _job.Getedit(id));
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit( JobModel model)
+        {
+            bool Result = _job.Postedit(model);
+            return Content(Result.ToString());
         }
 
         // GET: JobApplication
@@ -56,9 +65,9 @@ namespace TrackMyDay.Controllers
         [HttpPost]
         public ActionResult Create(JobModel model)
         {
-            _data.jobs.Add(model);
-            _data.SaveChanges();
-            return View();
+
+            bool Result = _job.SaveJobInfo(model);
+            return Content(Result.ToString());
         }
     }
 }

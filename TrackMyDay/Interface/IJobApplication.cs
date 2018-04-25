@@ -11,5 +11,8 @@ namespace TrackMyDay.Interface
     {
         IEnumerable<JobModel> AllJobLIst();
         JobModel JobDetail( int id);
+        bool SaveJobInfo(JobModel model);
+        JobModel Getedit(int id);
+       bool Postedit(JobModel model);
     }
 }

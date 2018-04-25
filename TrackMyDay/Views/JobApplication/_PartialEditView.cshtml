@@ -1,0 +1,164 @@
+﻿@model TrackMyDay.Models.JobModel
+
+
+
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.UserId)
+@Html.HiddenFor(model => model.ApplyDate)
+@Html.HiddenFor(model => model.Date)
+<table>
+    <tr>
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Type, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @if (Model.Type == "Full Time")
+                    {
+                        <p> Full Time :   @Html.RadioButtonFor(model => model.Type, "Full Time", new { @checked = "checked" })</p>
+                        <p> Internship : @Html.RadioButtonFor(model => model.Type, "Internship")</p>
+
+                    }
+                    @if (Model.Type == "Internship")
+                    {
+                        <p> Full Time :   @Html.RadioButtonFor(model => model.Type, "Full Time")</p>
+                        <p> Internship : @Html.RadioButtonFor(model => model.Type, "Internship", new { @checked = "checked" })</p>
+
+                    }
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApplyThrough, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Model.ApplyThrough == "Mail")
+                    {
+                        <p> Mail :   @Html.RadioButtonFor(model => model.ApplyThrough, "Mail", new { @checked = "checked" })</p>
+                        <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web")</p>
+
+                    }
+                    @if (Model.ApplyThrough == "Web")
+                    {
+                        <p> Mail : @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")</p>
+                        <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web", new { @checked = "checked" })</p>
+
+                    }
+
+                </div>
+            </div>
+
+        </td>
+
+
+
+        <td>
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.Announcement, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @if (Model.Announcement == "Announced")
+                    {
+                        <p> Announced :   @Html.RadioButtonFor(model => model.Announcement, "Announced", new { @checked = "checked" })</p>
+                        <p> Unsolited : @Html.RadioButtonFor(model => model.Announcement, "Unsolited")</p>
+
+                    }
+                    @if (Model.Announcement == "Unsolited")
+                    {
+                        <p> Announced : @Html.RadioButtonFor(model => model.Announcement, "Announced")</p>
+                        <p> Unsolited : @Html.RadioButtonFor(model => model.Announcement, "Unsolited", new { @checked = "checked" })</p>
+
+                    }
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ContacInfo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ContacInfo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContacInfo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+
+
+        <td>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Refferance, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Refferance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Refferance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Weblink, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Weblink, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Weblink, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+
+
+    </tr>
+</table>
+
+

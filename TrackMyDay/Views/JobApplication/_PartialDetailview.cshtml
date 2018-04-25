@@ -6,11 +6,20 @@
 
     <p><strong>@Html.DisplayNameFor(model => model.Company): </strong> @Html.DisplayFor(model => model.Company)</p>
     <p><strong>@Html.DisplayNameFor(model => model.Address): </strong> @Html.DisplayFor(model => model.Address)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.ContacInfo): </strong> @Html.DisplayFor(model => model.ContacInfo)</p>
+
     <p><strong>@Html.DisplayNameFor(model => model.Announcement): </strong> @Html.DisplayFor(model => model.Announcement)</p>
     <p><strong>@Html.DisplayNameFor(model => model.ApplyThrough): </strong> @Html.DisplayFor(model => model.ApplyThrough)</p>
     <p><strong>@Html.DisplayNameFor(model => model.Status): </strong> @Html.DisplayFor(model => model.Status)</p>
-    <p><strong>@Html.DisplayNameFor(model => model.Date): </strong> @Html.DisplayFor(model => model.Date)</p>
+
+    <p><strong>@Html.DisplayNameFor(model => model.Type): </strong> @Html.DisplayFor(model => model.Type)</p>
+
+    <p><strong>@Html.DisplayNameFor(model => model.ApplyDate): </strong> @Html.ValueFor(model => model.ApplyDate, "{0:dd/MM/yyyy}")</p>
+    <p><strong>@Html.DisplayNameFor(model => model.Date): </strong> @Html.ValueFor(model => model.Date, "{0:dd/MM/yyyy}")</p>
+
+
     <p><strong>@Html.DisplayNameFor(model => model.Refferance): </strong> @Html.DisplayFor(model => model.Refferance)</p>
+
 </div>    
 
        

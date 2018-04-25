@@ -19,16 +19,18 @@ namespace TrackMyDay.Models
 
         public string Weblink  { get; set; }
 
-        public bool Announcement   { get; set; }
+        public string Announcement   { get; set; }
 
         public string ContacInfo  { get; set; }
 
-        public bool ApplyThrough  { get; set; }
+        public string ApplyThrough  { get; set; }
 
         public string Status  { get; set; }
 
 
         public DateTime Date { get; set; }
+
+        public DateTime ApplyDate { get; set; }
 
         public string Refferance  { get; set; }
 
