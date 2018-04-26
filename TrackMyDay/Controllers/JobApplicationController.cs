@@ -38,8 +38,8 @@ namespace TrackMyDay.Controllers
 
         public ActionResult Edit(int id)
         {
-
-            return PartialView("_PartialEditView", _job.Getedit(id));
+            var result = _job.Getedit(id);
+            return PartialView("_PartialEditView",result);
         }
 
 

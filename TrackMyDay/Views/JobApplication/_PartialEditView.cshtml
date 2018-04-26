@@ -1,5 +1,5 @@
 ﻿@model TrackMyDay.Models.JobModel
-
+@using TrackMyDay.Models
 
 
 
@@ -123,30 +123,15 @@
 
         <td>
             <div class="form-group">
-                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </td>
-
-
-        <td>
-
-            <div class="form-group">
                 @Html.LabelFor(model => model.Refferance, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Refferance, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Refferance, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-
         </td>
-    </tr>
 
-    <tr>
+
         <td>
             <div class="form-group">
                 @Html.LabelFor(model => model.Weblink, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -155,6 +140,39 @@
                     @Html.ValidationMessageFor(model => model.Weblink, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td class=" col-sm-12 ">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Model.Status == "Not Reply Yet")
+    {
+                    <p> Not Reply Yet :   @Html.RadioButtonFor(model => model.Status, "Not Reply Yet", new { @checked = "checked" })</p>
+                    <p> Refused : @Html.RadioButtonFor(model => model.Status, "Refused")</p>
+                    <p> Interview : @Html.RadioButtonFor(model => model.Status, "Interview")</p>
+
+}
+                    @if (Model.Status == "Refused")
+    {
+                <p> Not Reply Yet :   @Html.RadioButtonFor(model => model.Status, "Not Reply Yet")</p>
+                <p> Refused : @Html.RadioButtonFor(model => model.Status, "Refused", new { @checked = "checked" })</p>
+                <p> Interview : @Html.RadioButtonFor(model => model.Status, "Interview")</p>
+}
+
+                    @if (Model.Status == "Interview")
+    {
+                <p> Not Reply Yet :   @Html.RadioButtonFor(model => model.Status, "Not Reply Yet")</p>
+                <p> Refused : @Html.RadioButtonFor(model => model.Status, "Refused")</p>
+                <p> Interview : @Html.RadioButtonFor(model => model.Status, "Interview", new { @checked = "checked" })</p>
+}
+                </div>
+            </div>
+
         </td>
 
 

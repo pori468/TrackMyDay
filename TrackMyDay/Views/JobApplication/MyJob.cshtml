@@ -6,8 +6,10 @@
 <h2>Job Application</h2><br />
 <input type="button" id="Switch" value="Add New application" />
 <br /><br />
-<div id="DataContainer">
 
+      
+
+<div id="DataContainer">
 
 </div>
 
@@ -24,11 +26,12 @@
         if ($(this).val() == "My Application") {
             $("#DataContainer").load("/JobApplication/Index");
             $(this).val("Add New application");
-
+            $("#check").show();
         }
         else {
             $(this).val("My Application");
             $("#DataContainer").load("/JobApplication/Create");
+             $("#check").hide();
         }
     });
 
