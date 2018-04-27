@@ -7,8 +7,14 @@
 
 @model IEnumerable<TrackMyDay.Models.JobModel>
 
+<div class="row">
 
-<input id="myInput" type="text" placeholder="What are You Looking for !!!!" />
+    <input class="col-sm-4" id="myInput" type="text" placeholder="What are You Looking for !!!!" /> 
+    <input class="col-sm-4" type="button" id="SortingDate" value="Show Latest Application" />
+    <input class="col-sm-4" type="button" id="SortingDeadline" value="Show Latest Deadline" />
+
+
+</div>
 <br /><br />
 
 
@@ -72,59 +78,59 @@
     @foreach (var item in Model)
     {
 
-    <tr class="card">
-        <td class="card-header col-sm-3 ">
-            <a href="#" onClick="ApplicationDetails(@item.Id)" ;>@item.Position</a>
-        </td>
-        <td class="card-header">
-            @Html.DisplayFor(modelItem => item.Company)
-        </td>
+        <tr class="card">
+            <td class="card-header col-sm-3 ">
+                <a href="#" onClick="ApplicationDetails(@item.Id)" ;>@item.Position</a>
+            </td>
+            <td class="card-header">
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
 
-        <td class="card-header col-sm-3">
-            <a target="_blank" href="@item.Weblink"> Check Link</a>
-           
-        </td>
+            <td class="card-header col-sm-3">
+                <a target="_blank" href="@item.Weblink"> Check Link</a>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
+            </td>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.Announcement)
-        </td>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.ContacInfo)
-        </td>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.Announcement)
+            </td>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.ApplyThrough)
-        </td>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.ContacInfo)
+            </td>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.ApplyThrough)
+            </td>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.ApplyDate)
-        </td>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
 
-        <td class="card-header col-sm-3 rubel">
-            @Html.DisplayFor(modelItem => item.Refferance)
-        </td>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.ApplyDate)
+            </td>
 
-        <td class="card-header col-sm-3">
-            <a class="collapsed card-link" onclick="UpdateData(@item.Id)" data-toggle="collapse" href="#@item.Id">Update </a>
-        </td>
-    </tr>
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.Refferance)
+            </td>
+
+            <td class="card-header col-sm-3">
+                <a class="collapsed card-link" onclick="UpdateData(@item.Id)" data-toggle="collapse" href="#@item.Id">Update </a>
+            </td>
+        </tr>
 
         <tr id="@item.Id" class="collapse " data-parent="#accordion ">
             <td class="card-body">
@@ -165,9 +171,35 @@
         });
 
         $(".rubel").hide();
+
+
     });
 
 
+
+    $('#SortingDeadline').click(function () {
+        if ($(this).val() == "Show Latest Deadline") {
+            sortTable(0, 9);
+            $(this).val("Show Oldest Deadline");
+
+        }
+        else {
+            $(this).val("Show Latest Deadline");
+            sortTable(1, 9);
+        }
+    });
+
+    $('#SortingDate').click(function () {
+        if ($(this).val() == "Show Latest Application") {
+            sortTable(0,10);
+            $(this).val("Show Oldest Application");
+
+        }
+        else {
+            $(this).val("Show Latest Application");
+            sortTable(1,10);
+        }
+    });
 
     function UpdateData(id) {
 
@@ -236,6 +268,61 @@
     }
 
 
+    function sortTable(order, date) {
+
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("table");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        rows = document.getElementsByClassName("card");
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+
+
+
+            /*Loop through all rows of class "card" :*/
+            for (i = 0; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[date];
+                y = rows[i + 1].getElementsByTagName("TD")[date];
+
+                //check if the two rows should switch place:
+               
+                 if (order == 0) {
+                    if (x.innerHTML < y.innerHTML) {
+                        //if so, mark as a switch and break the loop:
+
+                        shouldSwitch = true;
+                        break;
+                    }
+                 }
+
+                 else if (order == 1) {
+                     if (x.innerHTML > y.innerHTML) {
+                         //if so, mark as a switch and break the loop:
+
+                         shouldSwitch = true;
+                         break;
+                     }
+                 }
+                
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+
+            }
+        }
+    }
+
+    
 
 </script>
 
