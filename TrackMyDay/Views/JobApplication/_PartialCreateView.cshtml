@@ -57,15 +57,7 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Announcement, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-                <label class="radio-inline"><input type="radio" name="Announcement">Announced</label>
-                <label class="radio-inline"><input type="radio" name="Announcement">Unsolited</label>
-
-            </div>
-        </div>*@
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.Announcement, new { @class = "col-md-2 control-label" })
@@ -89,7 +81,11 @@
             @Html.LabelFor(model => model.ApplyThrough, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 Mail:  @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")
-                Web: @Html.RadioButtonFor(model => model.ApplyThrough, "Web")
+                Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web")
+                Phone : @Html.RadioButtonFor(model => model.ApplyThrough, "Phone")
+                Personally : @Html.RadioButtonFor(model => model.ApplyThrough, "Personally")
+                Facebook : @Html.RadioButtonFor(model => model.ApplyThrough, "Facebook")
+                LinkedIn : @Html.RadioButtonFor(model => model.ApplyThrough, "LinkedIn")
             </div>
         </div>
 

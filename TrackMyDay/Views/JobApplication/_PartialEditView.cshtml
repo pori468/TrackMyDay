@@ -67,17 +67,68 @@
                 @Html.LabelFor(model => model.ApplyThrough, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @if (Model.ApplyThrough == "Mail")
-                    {
-                        <p> Mail :   @Html.RadioButtonFor(model => model.ApplyThrough, "Mail", new { @checked = "checked" })</p>
-                        <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web")</p>
+    {
+                <p> Mail :   @Html.RadioButtonFor(model => model.ApplyThrough, "Mail", new { @checked = "checked" })</p>
+                <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web")</p>
+                <p> Phone : @Html.RadioButtonFor(model => model.ApplyThrough, "Phone")</p>
+                <p> Personally : @Html.RadioButtonFor(model => model.ApplyThrough, "Personally")</p>
+                <p> Facebook : @Html.RadioButtonFor(model => model.ApplyThrough, "Facebook")</p>
+                <p> LinkedIn : @Html.RadioButtonFor(model => model.ApplyThrough, "LinkedIn")</p>
 
-                    }
+}
                     @if (Model.ApplyThrough == "Web")
-                    {
-                        <p> Mail : @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")</p>
-                        <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web", new { @checked = "checked" })</p>
+    {
+                <p> Mail : @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")</p>
+                <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web", new { @checked = "checked" })</p>
+                <p> Phone : @Html.RadioButtonFor(model => model.ApplyThrough, "Phone")</p>
+                <p> Personally : @Html.RadioButtonFor(model => model.ApplyThrough, "Personally")</p>
+                <p> Facebook : @Html.RadioButtonFor(model => model.ApplyThrough, "Facebook")</p>
+                <p> LinkedIn : @Html.RadioButtonFor(model => model.ApplyThrough, "LinkedIn")</p>
+}
 
-                    }
+                    @if (Model.ApplyThrough == "Phone")
+    {
+                <p> Mail : @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")</p>
+                <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web")</p>
+                <p> Phone : @Html.RadioButtonFor(model => model.ApplyThrough, "Phone", new { @checked = "checked" })</p>
+                <p> Personally : @Html.RadioButtonFor(model => model.ApplyThrough, "Personally")</p>
+                <p> Facebook : @Html.RadioButtonFor(model => model.ApplyThrough, "Facebook")</p>
+                <p> LinkedIn : @Html.RadioButtonFor(model => model.ApplyThrough, "LinkedIn")</p>
+}
+
+                    @if (Model.ApplyThrough == "Personally")
+    {
+                <p> Mail : @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")</p>
+                <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web")</p>
+                <p> Phone : @Html.RadioButtonFor(model => model.ApplyThrough, "Phone")</p>
+                <p> Personally : @Html.RadioButtonFor(model => model.ApplyThrough, "Personally", new { @checked = "checked" })</p>
+                <p> Facebook : @Html.RadioButtonFor(model => model.ApplyThrough, "Facebook")</p>
+                <p> LinkedIn : @Html.RadioButtonFor(model => model.ApplyThrough, "LinkedIn")</p>
+}
+
+
+                    @if (Model.ApplyThrough == "Facebook")
+    {
+                <p> Mail : @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")</p>
+                <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web")</p>
+                <p> Phone : @Html.RadioButtonFor(model => model.ApplyThrough, "Phone")</p>
+                <p> Personally : @Html.RadioButtonFor(model => model.ApplyThrough, "Personally")</p>
+                <p> Facebook : @Html.RadioButtonFor(model => model.ApplyThrough, "Facebook", new { @checked = "checked" })</p>
+                <p> LinkedIn : @Html.RadioButtonFor(model => model.ApplyThrough, "LinkedIn")</p>
+}
+
+                    @if (Model.ApplyThrough == "LinkedIn")
+    {
+                <p> Mail : @Html.RadioButtonFor(model => model.ApplyThrough, "Mail")</p>
+                <p> Web : @Html.RadioButtonFor(model => model.ApplyThrough, "Web")</p>
+                <p> Phone : @Html.RadioButtonFor(model => model.ApplyThrough, "Phone")</p>
+                <p> Personally : @Html.RadioButtonFor(model => model.ApplyThrough, "Personally")</p>
+                <p> Facebook : @Html.RadioButtonFor(model => model.ApplyThrough, "Facebook")</p>
+                <p> LinkedIn : @Html.RadioButtonFor(model => model.ApplyThrough, "LinkedIn", new { @checked = "checked" })</p>
+}
+
+
+
 
                 </div>
             </div>

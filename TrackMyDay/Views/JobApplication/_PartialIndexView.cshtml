@@ -1,6 +1,6 @@
-﻿
+﻿<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 
 
@@ -8,11 +8,21 @@
 @model IEnumerable<TrackMyDay.Models.JobModel>
 
 <div class="row">
+    <div class="col-sm-3">
+        <label for="search">Search By :</label>
+        <select id="SearchList">
+            <option value="Position">Position</option>
+            <option value="Company">Company Name</option>
+            <option value="Address">Address</option>
+            <option value="Contac">Contac </option>
+            <option value="Refferance">Refferance </option>
 
-    <input class="col-sm-4" id="myInput" type="text" placeholder="What are You Looking for !!!!" /> 
-    <input class="col-sm-4" type="button" id="SortingDate" value="Show Latest Application" />
-    <input class="col-sm-4" type="button" id="SortingDeadline" value="Show Latest Deadline" />
 
+        </select>
+    </div>
+    <input class="col-sm-3" id="myInput" type="text" placeholder="What are You Looking for !!!!" />
+
+   
 
 </div>
 <br /><br />
@@ -23,7 +33,8 @@
     <tr>
 
         <th>
-            @Html.DisplayNameFor(model => model.Position)
+             @Html.DisplayNameFor(model => model.Position) 
+          
         </th>
 
         <th>
@@ -55,15 +66,19 @@
             @Html.DisplayNameFor(model => model.ApplyThrough)
         </th>
 
-        <th class="rubel">
-            @Html.DisplayNameFor(model => model.Status)
+        <th>
+        @Html.DisplayNameFor(model => model.Status) 
+
         </th>
 
-        <th class="rubel">
-            @Html.DisplayNameFor(model => model.Date)
+        <th>
+            <a href="#" id="SortingDate" value ="A" style="color:black; text-decoration:none">Application Date </a> 
+            
+
         </th>
-        <th class="rubel">
-            @Html.DisplayNameFor(model => model.ApplyDate)
+        <th>
+            <a href="#" id="SortingDeadline" value ="A" style="color:black; text-decoration:none">Deadline </a>
+            
         </th>
         <th class="rubel">
             @Html.DisplayNameFor(model => model.Refferance)
@@ -111,16 +126,18 @@
                 @Html.DisplayFor(modelItem => item.ApplyThrough)
             </td>
 
-            <td class="card-header col-sm-3 rubel">
+            <td class="card-header col-sm-3 ">
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
 
-            <td class="card-header col-sm-3 rubel">
-                @Html.DisplayFor(modelItem => item.Date)
+            <td class="card-header col-sm-3 ">
+               
+                @Html.ValueFor(modelItem => item.ApplyDate, "{0:dd/MM/yyyy}")
             </td>
 
-            <td class="card-header col-sm-3 rubel">
-                @Html.DisplayFor(modelItem => item.ApplyDate)
+            <td class="card-header col-sm-3 ">
+
+                @Html.ValueFor(modelItem => item.Date, "{0:dd/MM/yyyy}")
             </td>
 
             <td class="card-header col-sm-3 rubel">
@@ -134,7 +151,7 @@
 
         <tr id="@item.Id" class="collapse " data-parent="#accordion ">
             <td class="card-body">
-                <form id="UpdateInformation" action=" https://localhost:44396/JobApplication/Edit" method="post">
+                <form id="@item.Id" class="Hasan" action=" https://localhost:44396/JobApplication/Edit" method="post">
 
                     <div class="form-horizontal">
 
@@ -142,7 +159,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="button" value="Submit" class="btn btn-default" id="Submit" onclick="UpdateDataforedit()" data-toggle="collapse" href="#@item.Id" />
+                                <input type="button" value="Submit" class="btn btn-default" id="Submit" onclick="UpdateDataforedit(@item.Id)" data-toggle="collapse" href="#@item.Id" />
                             </div>
                         </div>
                     </div>
@@ -162,14 +179,48 @@
 
 
 <script>
+    
     $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $(".card ").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
+        $("#myInput").on("keyup", function myFunction() {
+            var input, filter, table, tr, td, i;
+            var value = $(this).val().toUpperCase();
 
+            tr = document.getElementsByClassName("card");
+            var check = 0;
+            var item = $('#SearchList').val();
+            switch (item) {
+                case "Position":
+                    check = 0;
+                    break;
+
+                case "Company":
+                    check = 1;
+                    break;
+
+                case "Address":
+                    check = 3;
+                    break;
+                case "Contac":
+                    check = 6;
+                    break;
+                case "Refferance":
+                    check = 11
+                    break;
+
+            }
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[check];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(value) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        });
+       
+        
         $(".rubel").hide();
 
 
@@ -178,28 +229,31 @@
 
 
     $('#SortingDeadline').click(function () {
-        if ($(this).val() == "Show Latest Deadline") {
+        if ($(this).val() == "A") {
             sortTable(0, 9);
-            $(this).val("Show Oldest Deadline");
+            $(this).val("B");
 
         }
         else {
-            $(this).val("Show Latest Deadline");
+            $(this).val("A");
             sortTable(1, 9);
         }
     });
 
     $('#SortingDate').click(function () {
-        if ($(this).val() == "Show Latest Application") {
+        
+        if ($(this).val() == "A") {
             sortTable(0,10);
-            $(this).val("Show Oldest Application");
+            $(this).val("B");
 
         }
         else {
-            $(this).val("Show Latest Application");
+            $(this).val("A");
             sortTable(1,10);
         }
     });
+
+   
 
     function UpdateData(id) {
 
@@ -221,10 +275,11 @@
 
     }
 
-    function UpdateDataforedit() {
+    function UpdateDataforedit(id) {
 
-        alert("Rubel");
-        var frm = $('#UpdateInformation');
+        var x = '#' + id +'.Hasan';
+        var frm = $(x);
+        
         $.ajax({
             type: frm.attr('method'),
             url: frm.attr('action'),
@@ -269,7 +324,7 @@
 
 
     function sortTable(order, date) {
-
+        
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.getElementById("table");
         switching = true;
@@ -322,7 +377,7 @@
         }
     }
 
-    
+   
 
 </script>
 
