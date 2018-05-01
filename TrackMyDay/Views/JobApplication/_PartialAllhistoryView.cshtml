@@ -1,0 +1,55 @@
+﻿
+
+@model IEnumerable<TrackMyDay.Models.JobHistoryModel>
+<table>
+
+    <tr>
+
+        <th class=" col-ms-3">
+            Date
+            </th>
+
+        <th class=" col-ms-3">
+            <strong>Action Details </strong>
+        </th>
+
+        <th class=" col-ms-3">
+            <strong> Next Action Date </strong>
+        </th>
+
+
+        <th class=" col-ms-3">
+            <strong>Next Action Details </strong>
+        </th>
+
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+
+    <tr>
+        <td class=" col-ms-3">
+            @Html.ValueFor(modelItem => item.ActionDate, "{0:dd/MM/yyyy}")
+           
+        </td>
+
+        <td class=" col-ms-3">
+            @Html.DisplayFor(modelItem => item.ActionDetails)
+        </td>
+
+        <td class=" col-ms-3">
+            @Html.ValueFor(modelItem => item.NextActionDate, "{0:dd/MM/yyyy}")
+
+        </td>
+
+        <td class=" col-ms-3">
+            @Html.DisplayFor(modelItem => item.NextAction)
+        </td>
+
+    </tr>
+
+    }
+
+
+</table>

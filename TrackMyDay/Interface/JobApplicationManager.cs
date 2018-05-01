@@ -31,8 +31,8 @@ namespace TrackMyDay.Interface
             JobModel detail = new JobModel();
             try
             {
-                detail = _data.jobs.FirstOrDefault(x=>x.Id==id);
-                
+                detail = _data.jobs.FirstOrDefault(x => x.Id == id);
+
                 return detail;
             }
 
@@ -42,35 +42,34 @@ namespace TrackMyDay.Interface
             }
         }
 
-       public bool SaveJobInfo(JobModel model)
+        public bool SaveJobInfo(JobModel model)
         {
             try
             {
                 model.Status = "Not Reply Yet";
                 model.UserId = "Rubel";
                 model.ApplyDate = DateTime.Now;
-
-                //JobModel rubel = new JobModel();
-                //rubel.UserId = "a";
-                //rubel.Position = "a";
-                //rubel.Company = "a";
-                //rubel.Address = "a";
-                //rubel.Announcement = "a";
-                //rubel.ApplyDate = DateTime.Now;
-                //rubel.ApplyThrough = "a";
-                //rubel.ContacInfo = "a";
-                //rubel.Date = DateTime.Now;
-                //rubel.Refferance = "a";
-                //rubel.Status = "a";
-                //rubel.Type = "a";
-                //rubel.Weblink = "a";
-
-
+                model.NextAction= "Follow up on the application";
 
                 _data.jobs.Add(model);
-            _data.SaveChanges();
+                _data.SaveChanges();
 
-            return true;
+                JobHistoryModel history = new JobHistoryModel();
+
+                history.UserId = "Rubel";
+                history.JobId = model.Id.ToString();
+                history.ActionDate = DateTime.Now;
+
+                history.NextAction = "Follow up on the application";
+                history.NextActionDate = model.Date;
+                history.ActionDetails = "Follow up on the application";
+
+                _data.JobHistory.Add(history);
+
+                _data.SaveChanges();
+
+                // from here a  task/event will be created to calander to remind the next action 
+                return true;
             }
 
             catch
@@ -93,7 +92,22 @@ namespace TrackMyDay.Interface
             }
         }
 
+        public IEnumerable<JobHistoryModel> AllHistory(string id)
+        {
+            List <JobHistoryModel> JobHistory = new List<JobHistoryModel>();
+           
+            try
+            {
+                JobHistory = _data.JobHistory.Where(x=>x.UserId=="Rubel" && x.JobId== id).OrderBy(y=>y.ActionDate).ToList();
+                
+                return JobHistory;
+            }
 
+            catch
+            {
+                return JobHistory;
+            }
+        }
         public bool Postedit(JobModel model)
         {
             try
@@ -104,6 +118,37 @@ namespace TrackMyDay.Interface
 
                 return true;
             }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public  bool CreateHistory(string Id, string Action, DateTime Nextdate, string NextAction)
+        {
+            try
+            {
+                JobHistoryModel History = new JobHistoryModel();
+
+                History.JobId = Id;
+                History.UserId = "Rubel";
+
+                History.ActionDate = DateTime.Now;
+                History.ActionDetails = Action;
+                History.NextActionDate = Nextdate;
+                History.NextAction = NextAction;
+
+                _data.JobHistory.Add(History);
+
+                int id = Int32.Parse(Id);
+               var job= _data.jobs.FirstOrDefault(x=>x.Id==id);
+                job.NextAction = NextAction;
+                _data.SaveChanges();
+
+                return true;
+            }
+
             catch
             {
                 return false;

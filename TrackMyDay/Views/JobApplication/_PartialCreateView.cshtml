@@ -121,7 +121,10 @@
     <script>
 
         $("#ApplicationDate").click(function () {
-            $("#ApplicationDate").datepicker({ dateFormat: 'dd-mm-yy' });
+            $("#ApplicationDate").datepicker({
+                dateFormat: 'dd-mm-yy',
+                minDate:0
+            });
 
         });
 

@@ -221,6 +221,14 @@
     <Compile Include="Migrations\201804241827405_job3.Designer.cs">
       <DependentUpon>201804241827405_job3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804301025131_jobhistory.cs" />
+    <Compile Include="Migrations\201804301025131_jobhistory.Designer.cs">
+      <DependentUpon>201804301025131_jobhistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805010040594_JobModelModified.cs" />
+    <Compile Include="Migrations\201805010040594_JobModelModified.Designer.cs">
+      <DependentUpon>201805010040594_JobModelModified.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CalanderModel.cs" />
@@ -228,6 +236,8 @@
     <Compile Include="Models\DataConnection.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JobHistoryModel.cs" />
+    <Compile Include="Models\JobHistoryViewModel.cs" />
     <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TrackMyDayDBContex.cs" />
@@ -295,8 +305,11 @@
     <Content Include="Views\JobApplication\_PartialIndexView.cshtml" />
     <Content Include="Views\JobApplication\_PartialCreateView.cshtml" />
     <Content Include="Views\JobApplication\_PartialDetailview.cshtml" />
-    <Content Include="Views\JobApplication\Edit.cshtml" />
+    <Content Include="Views\JobApplication\%28Lage na %29Edit.cshtml" />
     <Content Include="Views\JobApplication\_PartialEditView.cshtml" />
+    <Content Include="Views\JobApplication\_PartialAllhistoryView.cshtml" />
+    <Content Include="Views\JobApplication\_PartialJobHistoryView.cshtml" />
+    <Content Include="Views\JobApplication\%28Lage na%29createHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -330,6 +343,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804241827405_job3.resx">
       <DependentUpon>201804241827405_job3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804301025131_jobhistory.resx">
+      <DependentUpon>201804301025131_jobhistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805010040594_JobModelModified.resx">
+      <DependentUpon>201805010040594_JobModelModified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

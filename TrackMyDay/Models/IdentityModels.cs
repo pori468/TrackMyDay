@@ -26,6 +26,7 @@ namespace TrackMyDay.Models
         }
         public DbSet<CalanderModel> Calander { get; set; }
         public DbSet<JobModel> jobs { get; set; }
+        public DbSet<JobHistoryModel> JobHistory{ get; set; }
 
         public static ApplicationDbContext Create()
         {

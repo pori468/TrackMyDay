@@ -1,0 +1,129 @@
+﻿@model TrackMyDay.Models.JobHistoryViewModel
+
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<div id="AllHistory"> </div>
+
+<br /><br />
+
+
+
+<div class="form-horizontal">
+    <h4>Insert New History :</h4>
+    <hr />
+
+    <div class="form-group ">
+        <strong class="form-inline col-sm-4">What You Have Done : </strong>
+        <input type="text" class="form-control col-sm-8 form-inline" name="fname" id="Action"><br>
+
+    </div>
+
+    <div class="form-group">
+        <strong class="form-inline col-sm-4">Next Action Date : </strong>
+        <input type="text" class="form-control col-sm-8 form-inline" name="Date" id="NextActionDate"><br>
+
+    </div>
+
+
+
+    <div class="form-group ">
+        <strong class="form-inline col-sm-4">Next Action : </strong>
+        <input type="text" class="form-control col-sm-8 form-inline" name="fname" id="NextAction"><br>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 pull-right">
+            <input type="button" onclick="CreateHistory()" value="Submit" class="btn btn-default pull-right" />
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        var id = '@Model.JObId';
+
+
+        var url = "/JobApplication/AllHistory";
+
+            $.ajax({
+
+                url: url,
+                data: { jobId: id },
+
+                success: function (data) {
+
+                    $("#AllHistory").html(data);
+
+                }
+
+            });
+
+
+    });
+
+    $("#NextActionDate").click(function () {
+        $("#NextActionDate").datepicker({
+            dateFormat: 'dd-mm-yy',
+            minDate: 0
+        });
+
+    });
+
+    function CreateHistory() {
+
+        var id =  '@Model.JObId';
+        var Action = $("#Action").val();
+        var Nextdate = $("#NextActionDate").val();
+        var NextAction = $("#NextAction").val();
+
+
+        var url = "/JobApplication/JobHistory";
+
+        $.ajax({
+
+            url: url,
+            type: "POST",
+            data: { Id: id, Action: Action, Nextdate: Nextdate, NextAction: NextAction},
+
+            success: function (data) {
+
+
+                $("#Action").val("");
+                $("#NextActionDate").val("");
+                $("#NextAction").val("");
+
+                 var id = '@Model.JObId';
+
+
+        var url = "/JobApplication/AllHistory";
+
+            $.ajax({
+
+                url: url,
+                data: { jobId: id },
+
+                success: function (data) {
+
+                    $("#AllHistory").html(data);
+
+                }
+
+            });
+
+            }
+
+        });
+
+    }
+
+</script>
+
+

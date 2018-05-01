@@ -33,8 +33,8 @@
     <tr>
 
         <th>
-             @Html.DisplayNameFor(model => model.Position) 
-          
+            @Html.DisplayNameFor(model => model.Position)
+
         </th>
 
         <th>
@@ -67,23 +67,27 @@
         </th>
 
         <th>
-        @Html.DisplayNameFor(model => model.Status) 
+            @Html.DisplayNameFor(model => model.Status)
 
         </th>
 
         <th>
-            <a href="#" id="SortingDate" value ="A" style="color:black; text-decoration:none">Application Date </a> 
-            
+            <a href="#" id="SortingDate" value="A" style="color:black; text-decoration:none">Application Date </a>
+
 
         </th>
         <th>
-            <a href="#" id="SortingDeadline" value ="A" style="color:black; text-decoration:none">Deadline </a>
-            
+            <a href="#" id="SortingDeadline" value="A" style="color:black; text-decoration:none">Deadline </a>
+
         </th>
         <th class="rubel">
             @Html.DisplayNameFor(model => model.Refferance)
         </th>
 
+        <th>
+            Next Action
+
+        </th>
         <th>
 
         </th>
@@ -145,6 +149,10 @@
             </td>
 
             <td class="card-header col-sm-3">
+                @Html.DisplayFor(modelItem => item.NextAction)
+            </td>
+
+            <td class="card-header col-sm-3">
                 <a class="collapsed card-link" onclick="UpdateData(@item.Id)" data-toggle="collapse" href="#@item.Id">Update </a>
             </td>
         </tr>
@@ -166,6 +174,11 @@
 
 
                 </form>
+
+            </td>
+
+            <td class="card-body">
+                <a href="#" onclick="History(@item.Id)" > <strong>History</strong> </a>
 
             </td>
         </tr>
@@ -222,6 +235,8 @@
        
         
         $(".rubel").hide();
+
+
 
 
     });
@@ -312,6 +327,25 @@
 
             url: url,
             data: { id: id },
+
+            success: function (data) {
+                $('#Detailscontainer').html(data);
+                $('#JobDetails').modal();
+            }
+
+        });
+
+    }
+
+    function History(id) {
+        
+        var id = id;
+        var url = "/JobApplication/JobHistory";
+
+        $.ajax({
+
+            url: url,
+            data: { jobId: id },
 
             success: function (data) {
                 $('#Detailscontainer').html(data);

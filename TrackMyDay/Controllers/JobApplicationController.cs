@@ -56,6 +56,28 @@ namespace TrackMyDay.Controllers
 
             return PartialView ("_PartialDetailview",_job.JobDetail(id.Value));
         }
+        [HttpGet]
+        public ActionResult JobHistory(int jobId)
+        {
+            JobHistoryViewModel job = new JobHistoryViewModel();
+            job.JObId = jobId.ToString();
+            return PartialView("_PartialJobHistoryView", job);
+        }
+
+        [HttpPost]
+        public ActionResult JobHistory(string Id, string Action, DateTime Nextdate, string NextAction )
+        {
+            bool Result = _job.CreateHistory(Id,Action, Nextdate,  NextAction);
+            return Content(Result.ToString());
+        }
+
+
+
+        public ActionResult AllHistory (string jobId)
+        {
+            var result = _job.AllHistory(jobId);
+            return PartialView("_PartialAllhistoryView", result);
+        }
 
         // GET: JobApplication
         public ActionResult Create()

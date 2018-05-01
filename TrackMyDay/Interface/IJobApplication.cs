@@ -14,5 +14,7 @@ namespace TrackMyDay.Interface
         bool SaveJobInfo(JobModel model);
         JobModel Getedit(int id);
        bool Postedit(JobModel model);
+        IEnumerable<JobHistoryModel> AllHistory(string id);
+        bool CreateHistory(string Id, string Action, DateTime Nextdate, string NextAction);
     }
 }

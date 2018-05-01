@@ -26,6 +26,7 @@ namespace TrackMyDay.Models
         public string ApplyThrough  { get; set; }
 
         public string Status  { get; set; }
+        public string NextAction { get; set; }
 
 
         public DateTime Date { get; set; }
