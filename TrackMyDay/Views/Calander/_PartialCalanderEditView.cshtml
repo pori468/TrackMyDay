@@ -1,0 +1,95 @@
+﻿
+@model TrackMyDay.Models.CalanderModel
+@using TrackMyDay.Models
+
+
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.UserId)
+@Html.HiddenFor(model => model.Status)
+@Html.HiddenFor(model => model.Date)
+
+
+<table>
+    <tr>
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Titel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Titel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Titel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Event, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Event, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Event, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Repeat, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @if (Model.Repeat == "Never")
+                    {
+                        <p> Never: @Html.RadioButtonFor(model => model.Repeat, "Never", new { @checked = "checked" }) </p>
+                        <p>  Weekly: @Html.RadioButtonFor(model => model.Repeat, "Weekly")</p>
+                        <p> Monthly: @Html.RadioButtonFor(model => model.Repeat, "Monthly")</p>
+                        <p>Yearly: @Html.RadioButtonFor(model => model.Repeat, "Yearly")</p>
+
+
+                    }
+                    @if (Model.Repeat == "Weekly")
+                    {
+                        <p> Never: @Html.RadioButtonFor(model => model.Repeat, "Never") </p>
+                        <p>  Weekly: @Html.RadioButtonFor(model => model.Repeat, "Weekly", new { @checked = "checked" })</p>
+                        <p> Monthly: @Html.RadioButtonFor(model => model.Repeat, "Monthly")</p>
+                        <p>Yearly: @Html.RadioButtonFor(model => model.Repeat, "Yearly")</p>
+
+
+                    }
+                    @if (Model.Repeat == "Monthly")
+                    {
+                        <p> Never: @Html.RadioButtonFor(model => model.Repeat, "Never") </p>
+                        <p>  Weekly: @Html.RadioButtonFor(model => model.Repeat, "Weekly")</p>
+                        <p> Monthly: @Html.RadioButtonFor(model => model.Repeat, "Monthly", new { @checked = "checked" })</p>
+                        <p>Yearly: @Html.RadioButtonFor(model => model.Repeat, "Yearly")</p>
+
+
+                    }
+                    @if (Model.Repeat == "Yearly")
+                    {
+                        <p> Never: @Html.RadioButtonFor(model => model.Repeat, "Never") </p>
+                        <p>  Weekly: @Html.RadioButtonFor(model => model.Repeat, "Weekly")</p>
+                        <p> Monthly: @Html.RadioButtonFor(model => model.Repeat, "Monthly")</p>
+                        <p>Yearly: @Html.RadioButtonFor(model => model.Repeat, "Yearly", new { @checked = "checked" })</p>
+
+
+                    }
+                </div>
+            </div>
+        </td>
+
+    </tr>
+</table>
+
+

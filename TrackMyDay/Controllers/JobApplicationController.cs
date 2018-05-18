@@ -43,6 +43,7 @@ namespace TrackMyDay.Controllers
         }
 
 
+
         [HttpPost]
         public ActionResult Edit( JobModel model)
         {
@@ -91,5 +92,7 @@ namespace TrackMyDay.Controllers
             bool Result = _job.SaveJobInfo(model);
             return Content(Result.ToString());
         }
+
+       
     }
 }

@@ -199,6 +199,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interface\CalanderManager.cs" />
+    <Compile Include="Interface\ICalander.cs" />
     <Compile Include="Interface\IJobApplication.cs" />
     <Compile Include="Interface\JobApplicationManager.cs" />
     <Compile Include="Migrations\201804221233171_Create_database.cs" />
@@ -228,6 +230,14 @@
     <Compile Include="Migrations\201805010040594_JobModelModified.cs" />
     <Compile Include="Migrations\201805010040594_JobModelModified.Designer.cs">
       <DependentUpon>201805010040594_JobModelModified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805010120243_updatecalandermodel.cs" />
+    <Compile Include="Migrations\201805010120243_updatecalandermodel.Designer.cs">
+      <DependentUpon>201805010120243_updatecalandermodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805062006428_calandermodified.cs" />
+    <Compile Include="Migrations\201805062006428_calandermodified.Designer.cs">
+      <DependentUpon>201805062006428_calandermodified.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -305,15 +315,19 @@
     <Content Include="Views\JobApplication\_PartialIndexView.cshtml" />
     <Content Include="Views\JobApplication\_PartialCreateView.cshtml" />
     <Content Include="Views\JobApplication\_PartialDetailview.cshtml" />
-    <Content Include="Views\JobApplication\%28Lage na %29Edit.cshtml" />
     <Content Include="Views\JobApplication\_PartialEditView.cshtml" />
     <Content Include="Views\JobApplication\_PartialAllhistoryView.cshtml" />
     <Content Include="Views\JobApplication\_PartialJobHistoryView.cshtml" />
-    <Content Include="Views\JobApplication\%28Lage na%29createHistory.cshtml" />
+    <Content Include="Views\Calander\MyCalander.cshtml" />
+    <Content Include="Views\Calander\_PartialCalanderIndexView.cshtml" />
+    <Content Include="Views\Calander\CreateNewTasks.cshtml" />
+    <Content Include="Views\Calander\_PartialCreateCalanderView.cshtml" />
+    <Content Include="Views\Calander\_PartialDetailCalanderView.cshtml" />
+    <Content Include="Views\Calander\_PartialCalanderEditView.cshtml" />
+    <Content Include="Views\Calander\_PartialCalanderHistoryView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Calander\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -349,6 +363,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805010040594_JobModelModified.resx">
       <DependentUpon>201805010040594_JobModelModified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805010120243_updatecalandermodel.resx">
+      <DependentUpon>201805010120243_updatecalandermodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805062006428_calandermodified.resx">
+      <DependentUpon>201805062006428_calandermodified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

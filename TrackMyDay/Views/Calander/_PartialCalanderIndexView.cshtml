@@ -1,0 +1,407 @@
+﻿
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+@model IEnumerable<TrackMyDay.Models.CalanderModel>
+
+<div class="row">
+    <div class="col-sm-3">
+        <label for="search">Search By :</label>
+        <select id="CalanderSearchList">
+            <option value="Titel">Titel</option>
+            <option value="Date">Date</option>
+            <option value="Event">Event</option>
+
+
+
+        </select>
+    </div>
+    <input class="col-sm-3" id="myInputCalander" type="text" placeholder="What are You Looking for !!!!" />
+
+
+
+</div>
+<br /><br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titel)
+        </th>
+        <th>
+            <a href="#" id="SortingEvent" value="A" style="color:black; text-decoration:none">Event </a>
+
+        </th>
+
+        <th class="rubel">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            <a href="#" id="SortingDate" value="A" style="color:black; text-decoration:none">Date </a>
+
+        </th>
+
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="card @item.Id">
+
+            <td class="card-header col-sm-3 ">
+                <a href="#" onClick="TaskDetails(@item.Id)" ;>@item.Titel</a>
+
+            </td>
+
+            <td class="card-header col-sm-3 ">
+                @Html.DisplayFor(modelItem => item.Event)
+            </td>
+
+
+            <td class="card-header col-sm-3 rubel">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="card-header col-sm-3 gigDate">
+
+                @Html.ValueFor(modelItem => item.Date, "{0:dd/MM/yyyy}")
+            </td>
+
+            <td class="card-header col-sm-3">
+                <a class="collapsed card-link" onclick="UpdateCalander(@item.Id)" data-toggle="collapse" href="#@item.Id">Update </a>
+            </td>
+            <td class="card-header col-sm-3">
+                <a class="card-link" onclick="UpdateStatus(@item.Id)" href="#">Done </a>
+            </td>
+        </tr>
+
+        <tr id="@item.Id" class="collapse" data-parent="#accordion ">
+            <td class="card-body">
+                <form id="@item.Id" class="Hasan" action=" https://localhost:44396/Calander/Edit" method="post">
+
+                    <div class="form-horizontal">
+
+                        <div id="@item.Id" class="Update"></div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="button" value="Submit" class="btn btn-default" id="Submit" onclick="UpdateDataforedit(@item.Id)" data-toggle="collapse" href="#@item.Id" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </td>
+            <td class="card-body">
+                <a href="#" onclick="History(@item.Id)"> <strong>History</strong> </a>
+            </td>
+
+
+        </tr>
+
+    }
+
+</table>
+
+<script>
+
+    $(document).ready(function () {
+        $("#myInputCalander").on("keyup", function myFunction() {
+            var input, filter, table, tr, td, i;
+            var value = $(this).val().toUpperCase();
+
+            tr = document.getElementsByClassName("card");
+            var check = 0;
+            var item = $('#CalanderSearchList').val();
+            switch (item) {
+                case "Titel":
+                    check = 1;
+                    break;
+
+                case "Date":
+                    check = 3;
+                    break;
+
+                case "Event":
+                    check = 0;
+                    break;
+
+            }
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[check];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(value) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        });
+
+
+        $(".rubel").hide();
+
+
+
+
+    });
+
+
+
+    $('#SortingDate').click(function () {
+        if ($(this).val() == "A") {
+            sortTable(0, 3);
+            $(this).val("B");
+
+        }
+        else {
+            $(this).val("A");
+            sortTable(1, 3);
+        }
+    });
+
+    $('#SortingEvent').click(function () {
+
+        if ($(this).val() == "A") {
+            sortTable(0, 1);
+            $(this).val("B");
+
+        }
+        else {
+            $(this).val("A");
+            sortTable(1, 1);
+        }
+    });
+
+
+
+    function UpdateCalander(id) {
+
+        var id = id;
+        var url = "/Calander/Edit";
+
+        var x = '#' + id + '.Update';
+
+        $.ajax({
+
+            url: url,
+            data: { id: id },
+
+            success: function (data) {
+
+                $(x).html(data);
+
+            }
+
+        });
+
+    }
+
+    function UpdateStatus(id) {
+
+        var x = '.' + id + '.card';
+        var id = id;
+        var url = "/Calander/Status";
+
+        $.ajax({
+
+            url: url,
+            data: { id: id },
+
+            success: function (data) {
+
+                if (data == "True") {
+
+                    $(x).hide();
+                }
+                else {
+                    alert("Failed !!!");
+                }
+
+            }
+
+        });
+
+    }
+
+    function UpdateDataforedit(id) {
+
+        var x = '#' + id + '.Hasan';
+        var frm = $(x);
+
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+
+                if (data == "True") {
+
+                    alert(" Job info is Updated !!!");
+                }
+                else {
+                    alert("Failed !!!");
+                }
+
+            },
+            error: function (data) {
+                alert("Failed !!!");
+            },
+        });
+
+    }
+
+
+    function TaskDetails(id) {
+
+        var id = id;
+        var url = "/Calander/Detail";
+
+        $.ajax({
+
+            url: url,
+            data: { id: id },
+
+            success: function (data) {
+                $('#CalanderDetailscontainer').html(data);
+                $('#CalanderDetails').modal();
+            }
+
+        });
+
+    }
+
+    function History(id) {
+
+        var id = id;
+        var url = "/Calander/History";
+
+        $.ajax({
+
+            url: url,
+            data: { Id: id },
+
+            success: function (data) {
+                $('#CalanderDetailscontainer').html(data);
+                $('#CalanderDetails').modal();
+            }
+
+        });
+
+    }
+
+
+    function sortTable(order, data) {
+
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("table");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        rows = document.getElementsByClassName("card");
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+
+
+
+            /*Loop through all rows of class "card" :*/
+            for (i = 0; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[data];
+                y = rows[i + 1].getElementsByTagName("TD")[data];
+
+                //check if the two rows should switch place:
+                if (data == 3) {
+
+
+                    var valA = x.innerHTML;
+                    var valB = y.innerHTML;
+
+                    var compA = (isDate) ? new Date(valA) : valA;
+                    var compB = (isDate) ? new Date(valB) : valB;
+                    if (order == 0) {
+
+                        if (compA < compB) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+
+                    else if (order == 1) {
+                        if (compA > compB) {
+                            //if so, mark as a switch and break the loop:
+
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                else if (data == 0) {
+
+                    if (order == 0) {
+                        if (x.innerHTML < y.innerHTML) {
+                            //if so, mark as a switch and break the loop:
+
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+
+                    else if (order == 1) {
+                        if (x.innerHTML > y.innerHTML) {
+                            //if so, mark as a switch and break the loop:
+
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+
+
+
+
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+
+            }
+        }
+    }
+
+
+
+</script>
+
+
+<div class="modal fade" id="CalanderDetails">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="CalanderDetailscontainer">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

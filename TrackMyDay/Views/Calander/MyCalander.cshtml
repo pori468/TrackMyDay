@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "My Calander";
+}
+
+<h2>My Calander</h2><br />
+<input type="button" id="SwitchCalander" value="Add New Task" />
+<br /><br />
+      
+<input type="button" id="Unsolicide" value="Flex Task" />
+<br /><br />
+      
+
+
+<div id="CalanderDataContainer">
+
+</div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#CalanderDataContainer").load("/Calander/Index");
+    });
+
+    $('#SwitchCalander').click(function () {
+        if ($(this).val() == "Show My Tasks") {
+            $("#CalanderDataContainer").load("/Calander/Index");
+            $(this).val("Add New Task");
+            $("#Unsolicide").show();
+
+        }
+        else {
+            $(this).val("Show My Tasks");
+            $("#CalanderDataContainer").load("/Calander/CreateNewTasks");
+            $("#Unsolicide").hide();
+
+        }
+    });
+
+    $('#Unsolicide').click(function () {
+
+        if ($(this).val() == "Flex Task") {
+            $("#CalanderDataContainer").load("/Calander/Unsolicide");
+            $(this).val("Regular Task");
+
+
+        }
+        else {
+            $(this).val("Flex Task");
+            $("#CalanderDataContainer").load("/Calander/Index");
+
+
+        }
+
+    });
+
+</script>
+

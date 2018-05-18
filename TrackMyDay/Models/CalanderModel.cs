@@ -13,12 +13,15 @@ namespace TrackMyDay.Models
 
         public string UserId { get; set; }
 
+        public string Event { get; set; }
+
         public string Titel { get; set; }
 
         public string Description { get; set; }
 
-        public DateTime Date { get; set; }
 
+        public DateTime Date { get; set; }
+        public string Repeat { get; set; }
         public bool Status { get; set; }
     }
 }

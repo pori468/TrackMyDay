@@ -26,12 +26,12 @@
         if ($(this).val() == "My Application") {
             $("#DataContainer").load("/JobApplication/Index");
             $(this).val("Add New application");
-            $("#check").show();
+            //$("#check").show();
         }
         else {
             $(this).val("My Application");
             $("#DataContainer").load("/JobApplication/Create");
-             $("#check").hide();
+             //$("#check").hide();
         }
     });
 

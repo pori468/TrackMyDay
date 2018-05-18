@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TrackMyDay.Models.CalanderModel>
+
+
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Event)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Event)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Repeat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        
+    </tr>
+}
+
+</table>

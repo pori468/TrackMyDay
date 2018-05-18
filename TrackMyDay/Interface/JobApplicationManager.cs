@@ -66,9 +66,20 @@ namespace TrackMyDay.Interface
 
                 _data.JobHistory.Add(history);
 
+                CalanderModel MyCalander = new CalanderModel();
+
+                MyCalander.UserId = "Rubel";
+                MyCalander.Titel= "Follow up on the application";
+                MyCalander.Description = "Position: " + model.Position + ". " + "Company :" + model.Company + ". " + "Address :" + model.Address + ". " + "Contac :" + model.ContacInfo + ". " + "Deadline :" + model.Date;
+                MyCalander.Event = "Job Application";
+                MyCalander.Date = model.Date;
+                MyCalander.Status = true;
+
+                _data.Calander.Add(MyCalander);
+
                 _data.SaveChanges();
 
-                // from here a  task/event will be created to calander to remind the next action 
+                
                 return true;
             }
 
